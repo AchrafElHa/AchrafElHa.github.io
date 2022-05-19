@@ -3,9 +3,13 @@ function setup() {
   background(220);
   canvas.parent('canvas');
   canvas.style("margin","0.5vw");
+  console.log(localStorage.getItem(uploaded));
+  
 }
 var imageObject ;
+var converted = false ;
 function upload(){
+  localStorage.setItem(uploaded,true);
   const selectedFile = document.getElementById('image_upload');
   const myImageFile = selectedFile.files[0];
   let urlOfImageFile = URL.createObjectURL(myImageFile);//create an URL of the image file
@@ -13,6 +17,8 @@ function upload(){
   //displaying image after scaling image to the width of the canvas
 }
 function convert(){
+  if (converted==true) return ;
+  converted = true ; 
   let buffer_img = createGraphics(2000,2000);//creating an invisible buffer canvas
   buffer_img.background(255);
   buffer_img.textSize(6);
@@ -20,7 +26,10 @@ function convert(){
   const letters_by_luminosity = '$@B%8&WM#*oahkbdpqwmZO0QLCJUYXzcvunxrjft/\|()1{}[]?-_+~<>i!lI;:,"^`\'.';
   const len = letters_by_luminosity.length ;
   console.log(pixels.length,pixelDensity());
-  
+  if (document.getElementById("black_radio").checked){
+	  buffer_img.background(0);
+	  buffer_img.fill(255);
+  }
   for (let i=0;i<400;i+=6){
 	  for (let j=0;j<400;j+=6){
 		  let a = Math.round((pixels[4*(i*400+j)]+pixels[4*(i*400+j)+1]+pixels[4*(i*400+j)+2])*len/(3*255)-1);

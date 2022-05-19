@@ -28,7 +28,7 @@ Convert your Image to Ascii art !
 <div id="canvas"><div id="radio">
 <div id="side_menu">
 <p>Choose background color :</p>
-<input type="radio" id="white_radio" name="background_color" value="white">
+<input type="radio" id="white_radio" name="background_color" value="white" checked>
 <label>white</label><br>
 <input type="radio" id="black_radio" name="background_color" value="black">
 <label>black</label><br>
@@ -36,8 +36,8 @@ Convert your Image to Ascii art !
 </div>
 </div>
 <div id="buttons">
-<input type="file" style="display: block;" id="image_upload" name="image_upload" accept=".jpg, .jpeg, .png" multiple>
-<button onclick="upload()">Submit !</button>
+<input type="file" onchange="upload()" style="display: block;" id="image_upload" name="image_upload" accept=".jpg, .jpeg, .png" multiple>
+<!-- <button onclick="upload()">Submit !</button> -->
 <button onclick="convert()">Convert !</button>
 </div>
 </div>
